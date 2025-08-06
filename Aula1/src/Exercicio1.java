@@ -7,6 +7,5 @@ public class Exercicio1 {
         int year = scan.nextInt();
         int age = 2025 - year;
         System.out.println("Sua idade é de "+age);
-
     }
 }

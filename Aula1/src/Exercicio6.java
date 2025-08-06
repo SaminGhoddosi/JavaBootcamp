@@ -19,6 +19,4 @@ public class Exercicio6 {
             System.out.println("Delta negativo");
         }
     }
- //delta = b² -4*a*c
-    // x = -b +raiz delta/2*a
 }
