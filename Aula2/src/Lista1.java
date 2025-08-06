@@ -9,18 +9,20 @@ public class Lista1 {
              int escolhaLista = scan.nextInt();
              switch (escolhaLista) {
                  case 1:
-                         opcao =  Vida1(scan, opcao);
+                         opcao =  Lista1(scan, opcao);
                          break;
                      case 2:
-                         opcao = Vida2(scan,opcao);
+                         opcao = Lista2(scan,opcao);
                          break;
+
                  }
         }while(opcao != 0);
         System.out.println("Tchau");
 
+
     }
-    public static int Vida1 (Scanner scan, int opcao){
-        lista1();
+    public static int Lista1 (Scanner scan, int opcao){
+        opcaolista1();
         int escolha = scan.nextInt();
         switch (escolha) {
             case 0:
@@ -66,8 +68,8 @@ public class Lista1 {
         Clear(scan, opcao);
         return opcao;
     }
-    public static int Vida2(Scanner scan, int opcao){
-        lista2();
+    public static int Lista2(Scanner scan, int opcao){
+        opcaolista2();
         int escolha2 = scan.nextInt();
 
         switch (escolha2) {
@@ -80,6 +82,15 @@ public class Lista1 {
                 break;
             case 12:
                 exercicioExtra12(scan);
+                break;
+            case 13:
+                exercicioExtra13(scan);
+                break;
+            case 14:
+                exercicioExtra14(scan);
+                break;
+            case 16:
+                exercicioExtra16(scan);
                 break;
             default:
                 System.out.println("Opção inválida!");
@@ -97,14 +108,15 @@ public class Lista1 {
             }
         }
     }
+    
     public static void lista(){
         System.out.print("Quer a lista 1(Principal) ou 2(Extra)?: ");
     }
-    public  static void lista1(){
+    public  static void opcaolista1(){
         System.out.print("Escolha o exercício entre 1 e 11. Digite 0 para sair do programa: ");
     }
-    public static void lista2(){
-        System.out.print("Escolha o exercício 11 ou 12. Digite 0 para sair do programa: ");
+    public static void opcaolista2(){
+        System.out.print("Escolha o exercício 11 até 14 ou 16. Digite 0 para sair do programa: ");
     }
     public static void exercicio1(Scanner scan){
         System.out.println("Verifique se um número é positivo, negativo ou zero.");
@@ -120,7 +132,7 @@ public class Lista1 {
         System.out.println(numero%2==0?"Par":"Impar");
     }
     public static void exercicio3(Scanner scan){
-        System.out.println("Classifique a idade do usuario como jovem (menos de 30 anos) ou não jovem (65) anos ou mais.");
+        System.out.println("Classifique a idade do usuário como jovem (menos de 30 anos) ou não jovem (65) anos ou mais.");
         System.out.print("Digite a sua idade: ");
         int idade = scan.nextInt();
         System.out.println(idade<30?"Jovem":idade>=60?"Não jovem":"Meio-termo");
@@ -154,11 +166,11 @@ public class Lista1 {
     public static void exercicio8(Scanner scan){
         System.out.println("Classifique três números em ordem crescente");
         System.out.print("Digite o número1: ");
-        double numero1 = scan.nextDouble();
+        int numero1 = scan.nextInt();
         System.out.print("Digite o número2: ");
-        double numero2 = scan.nextDouble();
+        int numero2  = scan.nextInt();
         System.out.print("Digite o número3: ");
-        double numero3 = scan.nextDouble();
+        int numero3 = scan.nextInt();
         if(numero1>numero2 && numero1>numero3){
             if(numero2>numero3){
                 System.out.println("1- "+numero1+" 2- "+numero2+ " 3- "+numero3);
@@ -225,24 +237,30 @@ public class Lista1 {
         int percentual;
         if(salarioColaborador>=280){
             percentual = 20;
-            aumento =  (salarioColaborador*(percentual/100.0));//colocar .0 para entender que é double
-            salarioColaboradorAumento = salarioColaborador + aumento;
+            aumento =  aumento(salarioColaborador, percentual);
+            salarioColaboradorAumento = salarioColaboradorAumento(salarioColaborador, aumento);
 
         }else if(salarioColaborador>280 && salarioColaborador<=700){
             percentual = 15;
-            aumento =  (salarioColaborador*(percentual/100.0));
-            salarioColaboradorAumento = salarioColaborador + aumento;
+            aumento =  aumento(salarioColaborador, percentual);
+            salarioColaboradorAumento = salarioColaboradorAumento(salarioColaborador, aumento);
 
         }else if(salarioColaborador>700 && salarioColaborador<=1500){
             percentual = 10;
-            aumento =  (salarioColaborador*(percentual/100.0));
-            salarioColaboradorAumento = salarioColaborador + aumento;
+            aumento =  aumento(salarioColaborador, percentual);
+            salarioColaboradorAumento = salarioColaboradorAumento(salarioColaborador, aumento);
         }else{
             percentual = 5;
-            aumento =  (salarioColaborador*(percentual/100.0));
-            salarioColaboradorAumento = salarioColaborador + aumento;
+            aumento =  aumento(salarioColaborador, percentual);
+            salarioColaboradorAumento = salarioColaboradorAumento(salarioColaborador, aumento);
         }
         System.out.println("O salário do "+nomeColaborador+ " antes era de "+ String.format("%.2f", salarioColaborador)+" com o aumento de "+percentual+ "% ("+ String.format("%.2f", aumento)+"), fica o valor de R$"+String.format("%.2f", salarioColaboradorAumento));
+    }
+    public static double aumento(double salarioColaborador, int percentual){
+        return salarioColaborador*(percentual/100.0);//colocar .0 para entender que é double
+    }
+    public static double salarioColaboradorAumento(double salarioColaborador, double aumento){
+        return salarioColaborador + aumento;
     }
     public static void exercicioExtra12(Scanner scan){
         System.out.print("Digite o valor da sua hora: ");
@@ -259,29 +277,39 @@ public class Lista1 {
         if(salarioBruto<=900){
             porcentagemIR = 0;
             descontoIR = 0;
-            descontoINSS = salarioBruto*(porcentagemINSS/100);
-            descontoFTGS = salarioBruto*(porcentagemFGTS/100);
+            descontoINSS = descontoINSS(salarioBruto, porcentagemINSS);
+            descontoFTGS = descontoFGTS(salarioBruto, porcentagemFGTS);
         }
         else if(salarioBruto>900&&salarioBruto<=1500){
             porcentagemIR = 5;
-            descontoIR = salarioBruto*(porcentagemIR/100);
-            descontoINSS = salarioBruto*(porcentagemINSS/100);
-            descontoFTGS = salarioBruto*(porcentagemFGTS/100);
+            descontoIR = descontoIR(salarioBruto, porcentagemIR);
+            descontoINSS = descontoINSS(salarioBruto, porcentagemINSS);
+            descontoFTGS = descontoFGTS(salarioBruto, porcentagemFGTS);
         }else{
             porcentagemIR = 10;
-            descontoIR = salarioBruto*(porcentagemIR/100);
-            descontoINSS = salarioBruto*(porcentagemINSS/100);
-            descontoFTGS = salarioBruto*(porcentagemFGTS/100);
+            descontoIR = descontoIR(salarioBruto, porcentagemIR);
+            descontoINSS = descontoINSS(salarioBruto, porcentagemINSS);
+            descontoFTGS = descontoFGTS(salarioBruto, porcentagemFGTS);
         }
         double totalDescontos = descontoIR+descontoFTGS+descontoINSS;
         double salarioLiquido = salarioBruto - totalDescontos;
-        System.out.println("Salário Bruto: ("+valorHora+" * "+horaTrabalhada+"   :R$ "+String.format("%.2f", salarioBruto));
+        System.out.println("Salário Bruto: ("+valorHora+" * "+horaTrabalhada+")   :R$ "+String.format("%.2f", salarioBruto));
         System.out.println("(-) IR("+porcentagemIR+"%)   :R$ "+String.format("%.2f", descontoIR));
         System.out.println("(-) INSS("+porcentagemINSS+"%)   :R$ "+String.format("%.2f", descontoINSS));
-        System.out.println("(-) IR("+porcentagemFGTS+"%)   :R$ "+String.format("%.2f", descontoFTGS));
+        System.out.println("(-) FGTS("+porcentagemFGTS+"%)   :R$ "+String.format("%.2f", descontoFTGS));
         System.out.println("Total de descontos   :R$ "+String.format("%.2f", totalDescontos));
         System.out.println("Salário líquido : R$ "+ String.format("%.2f", salarioLiquido));
     }
+    public static double descontoIR(double salarioBruto, int porcentagemIR){
+        return salarioBruto*(porcentagemIR/100.0);
+    }
+    public static double descontoINSS(double salarioBruto, int porcentagemINSS){
+        return salarioBruto*(porcentagemINSS/100.0);
+    }
+    public static double descontoFGTS(double salarioBruto, int porcentagemFGTS){
+        return salarioBruto*(porcentagemFGTS/100.0);
+    }
+
     public static void exercicioExtra16(Scanner scan){
         System.out.print("Digite o A: ");
         int A = scan.nextInt();
@@ -296,13 +324,77 @@ public class Lista1 {
         double x1 = (-B +Math.sqrt(delta))/(2*A);
         double x2 = (-B -Math.sqrt(delta))/(2*A);
         if(delta < 0){
-            System.out.println("O delta é negativo, cálculo impossível");
+            System.out.println("O delta é negativo("+delta+"), cálculo impossível");
         }else if(delta == 0){
-            System.out.println("Delta é 0, logo só um X: "+x1);
+            System.out.println("Delta é "+delta+", logo só um X: "+String.format("%.4f",x1));
         }else {
-            System.out.println("Delta é positivo, logo tem dois Xs. X1: "+x1+". X2: "+x2);
+            System.out.println("Delta é positivo("+delta+"), logo tem dois Xs. X1: "+String.format("%.4f",x1)+". X2: "+String.format("%.4f",x2));
         }
-
+    }
+    public static void exercicioExtra13(Scanner scan){
+        System.out.print("Digite o número: ");
+        int dia = scan.nextInt();
+        String diaSemana;
+        switch (dia){
+            case 1:
+                diaSemana = "1 - Domingo";
+                break;
+            case 2:
+                diaSemana = "2 - Segunda";
+                break;
+            case 3:
+                diaSemana = "3 - Terça";
+                break;
+            case 4:
+                diaSemana = "4 - Quinta";
+                break;
+            case 5:
+                diaSemana = "5 - Sexta";
+                break;
+            case 6:
+                diaSemana = "6 - Sábado";
+                break;
+            case 7:
+                diaSemana = "7 - Domingo";
+                break;
+            default:
+                diaSemana = "Número inválido!";
+                break;
+        }
+        System.out.println(diaSemana);
+    }
+    public static void exercicioExtra14(Scanner scan){
+        System.out.print("Digite a sua primeira nota: ");
+        double nota1 = scan.nextDouble();
+        System.out.print("Digite a sua segunda nota: ");
+        double nota2 = scan.nextDouble();
+        double media = (nota1+nota2)/2;
+        char conceito;
+        if(media>=9 && media<=10){
+            conceito = 'A';
+        }else if(media>=7.5 && media<9){
+            conceito = 'B';
+        }else if(media>=6 && media<7.5){
+            conceito = 'C';
+        }else if(media>=4 && media<6){
+            conceito = 'D';
+        }else{
+            conceito = 'E';
+        }
+        System.out.println("A nota1: "+String.format("%.1f", nota1)+ " e nota2: "+String.format("%.1f", nota2)+ " forma a média de: "+String.format("%.1f", media)+ ". O conceito foi de: "+conceito);
+        String situacao;
+        switch(conceito){
+            case 'A','B','C':
+                situacao = "Aprovado";
+                break;
+            case 'D', 'E':
+                situacao = "Reprovado";
+                break;
+            default:
+                situacao = "Situação inesperada";
+                break;
+        }
+        System.out.print(situacao);
     }
 
 
