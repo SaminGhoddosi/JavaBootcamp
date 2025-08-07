@@ -1,5 +1,5 @@
 import java.util.Scanner;
-public class Lista1 {
+public class Lista {
     Scanner scan = new Scanner(System.in);
     public static void main(String[] args) {
         Scanner scan = new Scanner(System.in);
@@ -61,6 +61,9 @@ public class Lista1 {
             case 11:
                 exercicio11(scan);
                 break;
+            case 12:
+                exercicio12(scan);
+                break;
             default:
                 System.out.println("Opção inválida!");
                 break;
@@ -76,7 +79,9 @@ public class Lista1 {
             case 0:
                 opcao = 0;
                 break;
-
+            case 4:
+                ExercicioExtra04(scan);
+                break;
             case 11:
                 exercicioExtra11(scan);
                 break;
@@ -110,13 +115,13 @@ public class Lista1 {
     }
     
     public static void lista(){
-        System.out.print("Quer a lista 1(Principal) ou 2(Extra)?: ");
+        System.out.print("Quer a lista 1 ou 2?: ");
     }
     public  static void opcaolista1(){
         System.out.print("Escolha o exercício entre 1 e 11. Digite 0 para sair do programa: ");
     }
     public static void opcaolista2(){
-        System.out.print("Escolha o exercício 11 até 14 ou 16. Digite 0 para sair do programa: ");
+        System.out.print("Escolha o exercício 4, 11 até 14 ou 16 para. Digite 0 para sair do programa: ");
     }
     public static void exercicio1(Scanner scan){
         System.out.println("Verifique se um número é positivo, negativo ou zero.");
@@ -128,8 +133,7 @@ public class Lista1 {
     public static void exercicio2(Scanner scan){
         System.out.println("Determine se um número é par ou ímpar");
         System.out.print("Digite um número inteiro: ");
-        int numero = scan.nextInt();
-        System.out.println(numero%2==0?"Par":"Impar");
+        System.out.println(scan.nextInt()%2==0?"Par":"ìmpar");
     }
     public static void exercicio3(Scanner scan){
         System.out.println("Classifique a idade do usuário como jovem (menos de 30 anos) ou não jovem (65) anos ou mais.");
@@ -226,7 +230,39 @@ public class Lista1 {
         int idade = scan.nextInt();
         System.out.println(idade>=65?"Pode se aposentar":"Não pode se aposentar");
     }
-
+    public static void exercicio12(Scanner scan){
+        System.out.print("Digite a sua primeira nota: ");
+        double nota1 = scan.nextDouble();
+        System.out.print("Digite a sua segunda nota: ");
+        double nota2 = scan.nextDouble();
+        double media = (nota1+nota2)/2;
+        char conceito;
+        if(media>=9 && media<=10){
+            conceito = 'A';
+        }else if(media>=7.5 && media<9){
+            conceito = 'B';
+        }else if(media>=6 && media<7.5){
+            conceito = 'C';
+        }else if(media>=4 && media<6){
+            conceito = 'D';
+        }else{
+            conceito = 'E';
+        }
+        System.out.println("A nota1: "+String.format("%.1f", nota1)+ " e nota2: "+String.format("%.1f", nota2)+ " forma a média de: "+String.format("%.1f", media)+ ". O conceito foi de: "+conceito);
+        String situacao;
+        switch(conceito){
+            case 'A','B','C':
+                situacao = "Aprovado";
+                break;
+            case 'D', 'E':
+                situacao = "Reprovado";
+                break;
+            default:
+                situacao = "Situação inesperada";
+                break;
+        }
+        System.out.print(situacao);
+    }
     public static void exercicioExtra11(Scanner scan){
         System.out.print("Digite o nome do colaborador: ");
         String nomeColaborador = scan.next();
@@ -237,28 +273,21 @@ public class Lista1 {
         int percentual;
         if(salarioColaborador>=280){
             percentual = 20;
-            aumento =  aumento(salarioColaborador, percentual);
-            salarioColaboradorAumento = salarioColaboradorAumento(salarioColaborador, aumento);
-
         }else if(salarioColaborador>280 && salarioColaborador<=700){
             percentual = 15;
-            aumento =  aumento(salarioColaborador, percentual);
-            salarioColaboradorAumento = salarioColaboradorAumento(salarioColaborador, aumento);
 
         }else if(salarioColaborador>700 && salarioColaborador<=1500){
             percentual = 10;
-            aumento =  aumento(salarioColaborador, percentual);
-            salarioColaboradorAumento = salarioColaboradorAumento(salarioColaborador, aumento);
         }else{
             percentual = 5;
-            aumento =  aumento(salarioColaborador, percentual);
-            salarioColaboradorAumento = salarioColaboradorAumento(salarioColaborador, aumento);
         }
+        aumento =  aumento(salarioColaborador, percentual);
+        salarioColaboradorAumento = salarioColaboradorAumento(salarioColaborador, aumento);
         System.out.println("O salário do "+nomeColaborador+ " antes era de "+ String.format("%.2f", salarioColaborador)+" com o aumento de "+percentual+ "% ("+ String.format("%.2f", aumento)+"), fica o valor de R$"+String.format("%.2f", salarioColaboradorAumento));
     }
     public static double aumento(double salarioColaborador, int percentual){
         return salarioColaborador*(percentual/100.0);//colocar .0 para entender que é double
-    }
+    }//só praticando função
     public static double salarioColaboradorAumento(double salarioColaborador, double aumento){
         return salarioColaborador + aumento;
     }
@@ -396,7 +425,35 @@ public class Lista1 {
         }
         System.out.print(situacao);
     }
+ public static void ExercicioExtra04(Scanner scan){
+        System.out.print("Digite a letra: ");
+        String letra = scan.next().toLowerCase();
+        if(letra.length() > 1){
+            System.out.println("Digite somente um character");
+            System.exit(0);
+        }
+        switch (letra){
+            case "a","e","i","o","u":
+                System.out.println("É uma vogal!");
+                break;
+            default:
+                System.out.println("Não é uma vogal!");
+                break;
+        }
+        if(letra.equals("a")|| letra.equals("e")|| letra.equals("i")|| letra.equals("o")||letra.equals("u")){
+            System.out.println("É uma vogal!");
+        }else{
+            System.out.println("Não é uma vogal!");
+        }
+        if("aeiou".contains(letra)){
+            System.out.println("É vogal!");
+        }else if("0123456789".contains(letra)){
+            System.out.println("Número!");
+        }else{
+            System.out.println("Consoante");
+        }
 
+ }
 
 
 
