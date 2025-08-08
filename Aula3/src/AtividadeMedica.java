@@ -4,13 +4,10 @@ public class AtividadeMedica {
 
     public static void main(String[] args) {
         Scanner scan = new Scanner(System.in);
-        int saida = 100;
-        do{
+        while(true){
             int escolha = Menu(scan);
+            if (escolha == 0) break;
             switch(escolha){
-                case 0:
-                    saida =  0;
-                    break;
                 case 1:
                     ClearStart(scan);
                     Cadastro(scan);
@@ -34,10 +31,11 @@ public class AtividadeMedica {
                 default:
                     System.out.println("Opção inválida!");
             }
-            ClearEnd(scan, saida);
-        }while(saida != 0);
-        System.out.println("Obrigado por nos visitar");
+            ClearEnd(scan, escolha);
+        }
+           System.out.println("Obrigado por nos visitar");
     }
+
     public static void ClearEnd(Scanner scan, int saida){
         if(saida != 0){
             System.out.println();

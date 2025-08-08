@@ -1,6 +1,5 @@
 import java.util.Scanner;
 public class Lista {
-    Scanner scan = new Scanner(System.in);
     public static void main(String[] args) {
         Scanner scan = new Scanner(System.in);
         int opcao = 100;
@@ -97,6 +96,12 @@ public class Lista {
             case 16:
                 exercicioExtra16(scan);
                 break;
+            case 27:
+                exercicioExtra27(scan);
+                break;
+            case 28:
+                exercicioExtra28(scan);
+                break;
             default:
                 System.out.println("Opção inválida!");
                 break;
@@ -121,7 +126,7 @@ public class Lista {
         System.out.print("Escolha o exercício entre 1 e 11. Digite 0 para sair do programa: ");
     }
     public static void opcaolista2(){
-        System.out.print("Escolha o exercício 4, 11 até 14 ou 16 para. Digite 0 para sair do programa: ");
+        System.out.print("Escolha o exercício 4, 11 até 14, 16, 27 ou 28. Digite 0 para sair do programa: ");
     }
     public static void exercicio1(Scanner scan){
         System.out.println("Verifique se um número é positivo, negativo ou zero.");
@@ -433,18 +438,14 @@ public class Lista {
             System.exit(0);
         }
         switch (letra){
-            case "a","e","i","o","u":
-                System.out.println("É uma vogal!");
-                break;
-            default:
-                System.out.println("Não é uma vogal!");
-                break;
+            case "a","e","i","o","u" -> System.out.println("É uma vogal!");
+            default -> System.out.println("Não é uma vogal!"); //another way to use
         }
         if(letra.equals("a")|| letra.equals("e")|| letra.equals("i")|| letra.equals("o")||letra.equals("u")){
             System.out.println("É uma vogal!");
         }else{
             System.out.println("Não é uma vogal!");
-        }
+        }//best way->
         if("aeiou".contains(letra)){
             System.out.println("É vogal!");
         }else if("0123456789".contains(letra)){
@@ -452,12 +453,78 @@ public class Lista {
         }else{
             System.out.println("Consoante");
         }
-
  }
+ public static void exercicioExtra27(Scanner scan){
+        System.out.print("Quantidade, em Kg, de morangos que você quer comprar: ");
+        double quantidadeMorango = scan.nextDouble();
+        System.out.print("Quantidade, em Kg, de maças que você quer comprar: ");
+        double quantidadeMaca = scan.nextDouble();
+        double quantidadeTotal = quantidadeMaca+quantidadeMorango;
+        double precoMorango, precoMaca;
+        if(quantidadeMorango < 5){
+            precoMorango = quantidadeMorango * 2.5;
+        }else {
+            precoMorango = quantidadeMorango * 2.2;
+        }
+        if(quantidadeMaca < 5){
+          precoMaca = quantidadeMaca * 1.8;
+        }else {
+            precoMaca = quantidadeMaca * 1.5;
+        }// poderia ter usado o ternário
+        double valorTotal = precoMorango + precoMaca;
+        if (quantidadeTotal>8){
+            valorTotal = valorTotal -(valorTotal*0.1);
+        }
+     System.out.println("A quantidade de maças compradas foi de: "+quantidadeMaca+"kg. O valor ficou de R$"+precoMaca);
+     System.out.println("A quantidade de morangos comprados foi de: "+quantidadeMorango+"kg. O valor ficou de R$"+precoMorango);
+     System.out.println(quantidadeTotal>8 ? "A quantidade total comprada foi de "+quantidadeTotal+"kg. Com o desconto de 10% o valor total ficou de R$"+valorTotal : "A quantidade total comprada foi de "+quantidadeTotal+"kg.O valor total ficou de R$"+valorTotal);
+ }
+ public static void exercicioExtra28(Scanner scan){
+        System.out.print("Você tem o cartão tabajara?: S-Sim N-Não ");
+        String cartaoTabajara = scan.next().toLowerCase();
+        System.out.println("Qual tipo de carne gostaria?:\n" +
+                "1 - File duplo\n" +
+                "2 - Alcatra");
+        String tipoCarne = scan.next();
+     System.out.print("Quantos kg da carne você gostaria?: ");
+     double quantidadeCarne = scan.nextDouble();
+     double precoTotal;
+        switch (tipoCarne){
+            case "1":
+                tipoCarne = "File duplo";
+                precoTotal= (quantidadeCarne<5) ? quantidadeCarne*4.9 : quantidadeCarne*5.8;
+                break;
+            case "2":
+                tipoCarne = "Alcatra";
+                precoTotal= (quantidadeCarne<5) ? quantidadeCarne*5.9 : quantidadeCarne*6.8;
+                break;
+            default:
+                System.out.println("Erro!");
+                precoTotal = 0;
+                break;
+        }
+        System.out.println("---Nota fiscal---");
+        int desconto;
+        double valorPagar;
+        if(cartaoTabajara.equals("s")){
+            desconto=5;
+            valorPagar = precoTotal-(precoTotal*(desconto/100.0));
+        }else{
+            desconto=0;
+            valorPagar = precoTotal;
+        }
+     System.out.println("Carne: "+tipoCarne+
+             "\nQuantidade: "+quantidadeCarne+
+             "\nPreço Total:"+String.format("%.2f", precoTotal)+
+             "\nDesconto cartão tabajara: "+ desconto+"%"+
+             "\nValor a pagar: R$"+String.format("%.2f", valorPagar));
+    }
+
+
+
+
 
 
 
 
 }
-
-
