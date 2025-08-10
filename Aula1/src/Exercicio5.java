@@ -11,8 +11,8 @@ public class Exercicio5 {
         double nota3 = scan.nextDouble();
         System.out.print("Digite sua nota 4: ");
         double nota4 = scan.nextDouble();
-        double media = (nota1+nota2+nota3+nota4)/4;
-        System.out.println("A média é de: "+ String.format("%.1f", media));
-        System.out.println(media>=7?"Aprovado":"Reprovado");
+        double media = (nota1 + nota2 + nota3 + nota4) / 4;
+        System.out.println("A média é de: " + String.format("%.1f", media));
+        System.out.println(media >= 7 ? "Aprovado" : "Reprovado");
     }
 }

@@ -14,18 +14,18 @@ public class Main {
 //        }else{
 //            System.out.println("É negativo");
 //        }
-        System.out.println("O número é "+ (numero>0?"Positivo":numero==0?"Nulo":"Negativo"));
+        System.out.println("O número é " + (numero > 0 ? "Positivo" : numero == 0 ? "Nulo" : "Negativo"));
         //ternário é só para dois números no máximo
         System.out.print("Qual turno você trabalha? M, V, N: ");
         String turno = scan.next();// scan.next().toUpperCase();, mas usar ignoreCase é melhor
-        if(turno.equals("M") || turno.equals("m")){ // || &&
+        if (turno.equals("M") || turno.equals("m")) { // || &&
             System.out.println("Bom dia");
-        }else if(turno.toUpperCase().equals("V")){
+        } else if (turno.toUpperCase().equals("V")) {
             System.out.println("Boa tarde");
-        }else if(turno.equalsIgnoreCase("N")){// melhor jeito de analisar case
+        } else if (turno.equalsIgnoreCase("N")) {// melhor jeito de analisar case
             System.out.println("Boa noite");
-        }else{
+        } else {
             System.out.println("Entrada inválida");
         }
- }// || isso é uma pipeline
+    }// || isso é uma pipeline
 }
